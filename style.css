@@ -1,0 +1,138 @@
+/* GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  background: #e9e9f9;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #1c1b1f;
+  line-height: 145%;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* BUTTONS */
+
+.btn {
+  cursor: pointer;
+  user-select: none;
+  transition: filter 0.4s;
+}
+
+.btn:hover {
+  filter: brightness(80%);
+}
+
+/* HEADER */
+
+header.container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: auto;
+}
+
+header.container h1 {
+  margin: 70px 0;
+  font-size: 150%;
+  font-weight: 500;
+}
+
+header.container h1 span {
+  text-decoration: underline;
+}
+
+
+header.container textarea#codeText,
+header.container button.btn-submit {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 1px 10px -2px rgba(51, 51, 51, 0.3);
+}
+
+header.container textarea#codeText {
+  resize: vertical;
+  min-height: 150px;
+  line-height: 170%;
+  font-size: 90%;
+}
+
+header.container button.btn-submit {
+  margin-top: 10px;
+  background: rgb(238, 77, 96);
+  color: #fff;
+  font-size: 110%;
+  font-weight: 500;
+}
+
+/* MAIN */
+
+main {
+  margin: 70px;
+  width: 50%;
+  position: relative;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 10px -2px rgba(51, 51, 51, 0.3);
+}
+
+main pre.code {
+  padding: 20px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+main pre.code code {
+  font-size: 90%;
+  cursor: text;
+}
+
+main img.btn-copy {
+  width: 30px;
+  height: 30px;
+  color: firebrick;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  display: none;
+}
+
+footer {
+  width: 100%;
+  padding: 20px;
+  border-top: 1px solid #bbb;
+  text-align: center;
+}
+
+footer a {
+  font-weight: 400;
+  font-size: 120%;
+  transition: color 0.4s;
+  color: #999;
+}
+
+footer a:hover {
+  color: #1c1b1f;
+}
+
+div.copied {
+  width: 100%;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-align: center;
+}
