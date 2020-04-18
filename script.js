@@ -10,7 +10,6 @@ function Highlighter() {
 	const syntaxColor = (text, regex, color) =>
 		text.replace(regex, `<span style="color: ${color}">$1</span>`)
 
-
 	// Strings...
 	textarea = syntaxColor(
 		textarea,
@@ -18,10 +17,24 @@ function Highlighter() {
 		'#F3E214'
 	)
 
+	// comment
+	textarea = syntaxColor(
+		textarea,
+		/(\/\/.+|\/\*[\s\S]+\*\/)/gi,
+		'#4AD'
+	)
+
+	// operators
+	textarea = syntaxColor(
+		textarea,
+		/(?<!style)(!|=>|={1,3}|&&|\|\||>=|<=|\+\+|--|\+|\-|\*|%)(?!<\/span>)/g,
+		'#E257BF'
+	)
+
 	// Reserved Words
 	textarea = syntaxColor(
 		textarea,
-		/\b(function|return|const|let|var|if|else|break|continue|case|try|catch|throw|delete|for|typeof|do|while|new|void|debugger|finally|switch|this)\b/gi,
+		/(?<!<span>)\b(function|return|const|let|in|of|var|if|else|break|continue|case|try|catch|throw|delete|for|typeof|do|while|new|void|debugger|finally|switch|this)\b(?!<\/span>)/g,
 		'#E257BF'
 	)
 
@@ -29,35 +42,14 @@ function Highlighter() {
 
 	textarea = syntaxColor(
 		textarea,
-		/(.+(?==>))/g,
+		/(.+)(?==>)/g,
 		'#2C2'
-	)
-
-	// Arrow function params
-	textarea = syntaxColor(
-		textarea,
-		/(\(.+\).+=>)/g,
-		'#EC922C'
-	)
-
-	// comment
-	textarea = syntaxColor(
-		textarea,
-		/(\/\/.+|\/\*[\s\S]\*\/)/gi,
-		'#4AD'
-	)
-
-	// operadores
-	textarea = syntaxColor(
-		textarea,
-		/[^style</span>//](==|=>|\=|\+|\-|\*|\/|&&|\|\|)/g,
-		'#E257BF'
 	)
 
 	// functions
 	textarea = syntaxColor(
 		textarea,
-		/(\w+(?=\())/gi,
+		/(\w+)(?=\()/gi,
 		'#2C2'
 	)
 
@@ -65,7 +57,7 @@ function Highlighter() {
 
 	textarea = syntaxColor(
 		textarea,
-		/((?<=\().+(?=\)))/gi,
+		/(?<=\()(.+?)(?=\))/gi,
 		'#EC922C'
 	)
 
@@ -97,6 +89,7 @@ function copyText(text) {
 function copy() {
 	const code = document.querySelector('pre.code').innerHTML
 
+	// Após copiar ele vai mandar a mensagem
 	if (copyText(`<pre> ${code} </pre>`)) {
 		const div = document.createElement('div')
 		div.innerHTML = 'Copiado!!!'
