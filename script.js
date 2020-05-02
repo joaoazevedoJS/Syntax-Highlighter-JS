@@ -10,6 +10,10 @@ function Highlighter() {
 	const syntaxColor = (text, regex, color) =>
 		text.replace(regex, `<span style="color: ${color}">$1</span>`)
 
+	// remove < and > for html code
+	textarea = textarea.replace(/</gi, '&lt;')
+	textarea = textarea.replace(/>/gi, '&gt;')
+
 	// Strings...
 	textarea = syntaxColor(
 		textarea,
@@ -27,14 +31,14 @@ function Highlighter() {
 	// operators
 	textarea = syntaxColor(
 		textarea,
-		/(?<!style)(!|=>|={1,3}|&&|\|\||>=|<=|\+\+|--|\+|\-|\*|%)(?!<\/span>)/g,
+		/(?<!style)(!|={1,3}|&lt;|&gt;|&&|\|\||\+\+|--|\+|\-|\*|%)(?!<\/span>)/g,
 		'#E257BF'
 	)
 
 	// Reserved Words
 	textarea = syntaxColor(
 		textarea,
-		/(?<!<span>)\b(function|return|const|let|in|of|var|if|else|break|continue|case|try|catch|throw|delete|for|typeof|do|while|new|void|debugger|finally|switch|this)\b(?!<\/span>)/g,
+		/(?<!<span>)\b(function|return|export|default|const|let|in|of|var|if|else|break|continue|case|try|catch|throw|delete|for|typeof|do|while|new|void|debugger|finally|switch|this)\b(?!<\/span>)/g,
 		'#E257BF'
 	)
 
